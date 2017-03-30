@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block maincontent %}
+<!--el  enctype="multipart/form-data" cuando se trabaje con un formulario se debe utilizar esto
+con el fin de que los archivos adjuntos se puedan subir al servidor, si no se pone esto el archivo no se va a subir al servidor
+ -->
+	<form enctype="multipart/form-data" method="post" action="">
+		<!--el colocar esta etiqueta automaticamente hace que se evite ataque de inyeccion de sql ni ataques de corssctating
+		esto se hace a traves de un token o llave que esta en el settings.py
+		 -->
+		{% csrf_token %}
+
+		<!-- esto hace que automaticamente se genere el formulario con todos los datos de la bd
+		se puede hacer con las siguientes etiquetas:
+		as_p -> hace que se agrupen con parrafos
+		as_table -> automaticamente todos los datos lo hace que se organicen en una tabla
+		as_ul -> hace que las cosas se agupen como si fuera lista 
+		-->
+		{{ form.as_p }}
+		<!-- siempre se debe crear el boton de enviar porque no viene en el formulario
+		-->
+		<button type="submit">Save</button>
+		<a href="{% url 'photo_list' %}">Cancel</a>
+	</form>
+{% endblock maincontent %}

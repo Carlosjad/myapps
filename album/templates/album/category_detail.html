@@ -1,0 +1,39 @@
+<!-- sirve para llamar contenido de otras paginas html en este archivo o llamar plantillas de html esta plantilla va a estar en el templates del myapps-->
+{% extends 'base.html' %}
+
+<!-- esta etiqueta sirve para cargar elementos estaticos en estos casos las fotos -->
+{% load static %}
+
+<!-- sirve para crear contenido html luego del contenido del archivo que se llamo esta es un bloque para una seccion
+	el section tiene que ser igual al nombre del archivo del base
+-->
+{% block section %}
+	<h2>{{ object.name }}</h2>
+	<hr>
+{% endblock section %}
+
+<!-- sirve para crear contenido html luego del contenido del archivo que se llamo este es un bloque para el contenido de la pagina como tal
+	el maincontent tiene que ser igual al nombre del archivo del base
+-->
+{% block maincontent %}	
+	<div>
+		<table border="1px">
+			<tr>
+				<!-- object.photo_set.all trae todas las fotos de la categoria -->
+				{% for p in object.photo_set.all %}
+					<td>
+						<div>
+							{{ p.title }}
+						</div>
+						<div>
+							<!-- url sirve para llamar al name del urls.py, entre comillas se le manda el nombre y si tiene un parametro se lo separa con espacio-->
+							<a href="{% url 'photo_detail' p.id %}">
+								<img src="{% static p.photo.url %}" style="width: 200px; height: 200px">
+							</a>
+						</div>
+					</td>
+				{% endfor %}
+			</tr>
+		</table>
+	</div>
+{% endblock maincontent %}

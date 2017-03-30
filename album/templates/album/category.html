@@ -1,0 +1,34 @@
+<!-- sirve para llamar contenido de otras paginas html en este archivo o llamar plantillas de html esta plantilla va a estar en el templates del myapps-->
+{% extends 'base.html' %}
+
+<!-- sirve para crear contenido html luego del contenido del archivo que se llamo esta es un bloque para una seccion
+	el section tiene que ser igual al nombre del archivo del base
+-->
+{% block section %}
+	<h2>Category</h2>
+	<hr>
+{% endblock section %}
+
+<!-- sirve para crear contenido html luego del contenido del archivo que se llamo este es un bloque para el contenido de la pagina como tal
+	el maincontent tiene que ser igual al nombre del archivo del base
+-->
+{% block maincontent %}	
+	<div>
+		<!-- permite hacer el ciclo que recorra cada una de las categorias 
+			permite llamar codigo python en html a traves del { % for c in object_list % }
+		-->
+		{% for c in object_list %}
+
+		<!-- permite crear un href para cada categorias pero por el name que se establecio en el url para el category_detail
+			sirve generalmente para los hipervinculos
+		-->
+		<li>
+			<!-- url sirve para llamar al name del urls.py, entre comillas se le manda el nombre y si tiene un parametro se lo separa con espacio-->
+			<a href="{% url 'category_detail' c.pk %}">	{{c.name}} </a> 
+		</li>
+
+		<!-- cierra el for -->
+		{% endfor %}
+
+	</div>
+{% endblock maincontent %}

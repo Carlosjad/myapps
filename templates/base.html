@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Album</title>
+</head>
+<body>
+	<h1>Album</h1>
+	<ul>
+		<li>
+			<a href="{% url 'category_list' %}">
+				Category
+			</a>
+		</li>
+		<li>
+			<a href="{% url 'photo_list' %}">
+				Photo
+			</a>
+		</li>
+	</ul>
+	<hr>
+	<div>
+		<!-- en esta parte se va a poner el contenido del block section que se carga en las vistas que utilizan este template -->
+		{% block section %}
+		{% endblock section %}
+	</div>
+	<div>
+		<!-- en esta parte se va a poner el contenido del block maincontent que se carga en las vistas que utilizan este template -->
+		{% block maincontent %}
+		{% endblock maincontent %}
+	</div>
+</body>
+</html>
